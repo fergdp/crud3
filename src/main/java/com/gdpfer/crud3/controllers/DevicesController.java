@@ -1,5 +1,8 @@
 package com.gdpfer.crud3.controllers;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +20,8 @@ public class DevicesController {
 	@PostMapping("/device")
 	@ResponseBody
     public String returnMacAddress(@RequestBody Device device) {
-		return device.getMacAddress().toString();
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		Instant instant = timestamp.toInstant();
+		return device.getMacAddress().toString() +" "+ instant;
     }
 }
